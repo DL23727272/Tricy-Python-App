@@ -1,0 +1,107 @@
+MDScreen:
+    name: "main"
+    MDBottomNavigation:
+        #panel_color: "#eeeaea"
+        selected_color_background: "blue"
+        text_color_active: "lightgrey"
+
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Book'
+            icon: 'bus'
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(56)
+                pos_hint: {'center_y': .89}
+                canvas:
+                    Color:
+                        rgba: 0, 0, 0, 1 
+                    Line:
+                        points: self.x, self.y - dp(15), self.x + self.width, self.y - dp(15)
+                Image:
+                    source: "img/logo.png"
+                    size_hint_x: None
+                    width: dp(58)
+
+                MDLabel:
+                    text: "TWA \n Tricyle At Your Service"
+                    color: "#484747"
+                    bold: True
+                    font_size: "28dp"
+                    halign: "center"
+                    valign: "middle"
+                    size_hint_x: None
+                    width: self.texture_size[0]
+                    text_size: None, None
+                    markup: True
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(16)
+
+
+                MDTextField:
+                    id: name_field
+                    hint_text: "Name"
+                    mode: "rectangle"
+                    icon_right: "account"
+
+                MDTextField:
+                    id: address_field
+                    hint_text: "Address"
+                    mode: "rectangle"
+                    icon_right: "home"
+
+                MDTextField:
+                    id: contact_number_field
+                    hint_text: "Contact Number"
+                    mode: "rectangle"
+                    icon_right: "phone"
+
+                MDTextField:
+                    id: pickup_area_field
+                    hint_text: "Pickup Area"
+                    mode: "rectangle"
+                    icon_right: "map-marker"
+
+                MDTextField:
+                    id: destination_field
+                    hint_text: "Destination"
+                    mode: "rectangle"
+                    icon_right: "map-marker"
+
+                MDTextField:
+                    id: num_persons_field
+                    hint_text: "Number of Persons"
+                    mode: "rectangle"
+                    icon_right: "numeric"
+
+                MDLabel:
+                    id: error_label  
+                    text: ""
+                    color: "#FF0000"
+                    bold: True
+                    font_size: "18dp"
+                    halign: "center"
+                    size_hint_y: None
+                    height: dp(24)
+
+                BoxLayout:
+                    size_hint_y: None
+                    height: dp(48)
+                    spacing: dp(16)
+                    padding: dp(80), 0
+                    pos_hint: {'center_x': 0.5}  
+
+                    MDRectangleFlatButton:
+                        text: "Cancel"
+                        theme_text_color: "Custom"
+                        text_color: app.theme_cls.primary_color
+                        on_release: app.go_home()
+
+                    MDRectangleFlatButton:
+                        text: "Submit"
+                        theme_text_color: "Custom"
+                        text_color: app.theme_cls.primary_color
+                        on_release: app.submit_booking()

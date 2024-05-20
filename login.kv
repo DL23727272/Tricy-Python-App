@@ -1,0 +1,258 @@
+MDScreen:
+    name: "login"
+    MDBottomNavigation:
+        #panel_color: "#eeeaea"
+        selected_color_background: "blue"
+        text_color_active: "lightgrey"
+
+        MDBottomNavigationItem:
+            name: 'screen 1'
+            text: 'Home'
+            icon: 'home'
+
+            MDFloatLayout:
+       
+                Image:
+                    source: "img/logo.png"
+                    size_hint: 0.5, 0.5
+                    width: "80dp"
+                    height: "80dp"
+                    pos_hint: {'center_x': 0.5,'center_y': 0.6}
+                MDLabel:
+                    text: "[b]Three Wheels Arkilla[/b] \n \n Mark Dave Corpuz \n Ashlynnette Pingen"
+                    pos_hint: {'center_x': 0.5, 'center_y': 0.3}
+                    halign: 'center'
+                    theme_text_color: 'Custom'
+                    text_color: 0, 0, 0, 1
+                    font_size: "35sp"
+                    markup: True
+
+        MDBottomNavigationItem:
+            name: 'screen 2'
+            text: 'Login'
+            icon: 'account'
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(56)
+                pos_hint: {'center_y': .89}
+                canvas:
+                    Color:
+                        rgba: 0, 0, 0, 1 
+                    Line:
+                        points: self.x, self.y - dp(15), self.x + self.width, self.y - dp(15)
+                Image:
+                    source: "img/logo.png"
+                    size_hint_x: None
+                    width: dp(58)
+
+                MDLabel:
+                    text: "TWA \n Tricyle At Your Service"
+                    color: "#484747"
+                    bold: True
+                    font_size: "28dp"
+                    halign: "center"
+                    valign: "middle"
+                    size_hint_x: None
+                    width: self.texture_size[0]
+                    text_size: None, None
+                    markup: True
+
+            MDLabel:
+                id: login_error_label  
+                text: ""
+                color: "#FF0000"
+                bold: True
+                font_size: "18dp"
+                halign: "center"
+                pos_hint: {'center_y': .72}
+                
+            MDTextField:
+                mode: "rectangle"
+                id: UsernameLogin
+                hint_text: "Username"
+                icon_right: "account"
+                helper_text: "Enter username"
+                helper_text_mode: "on_focus"
+                font_size: "20dp"
+                size_hint_x: .85
+                pos_hint: {'center_x': .5, 'center_y': .65}
+                on_text: self.text = self.text.replace(" ", "")
+                write_tab: False
+
+            MDTextField:
+                id: PasswordLogin
+                mode: "rectangle"
+                hint_text: "Password"
+                password: True
+                icon_right: "eye-off"
+                helper_text: "Enter password"
+                helper_text_mode: "on_focus"
+                font_size: "20dp"
+                size_hint_x: .85
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                on_text: self.text = self.text.replace(" ", "")
+                write_tab: False
+
+            BoxLayout: 
+                size_hint: .85, None
+                height: "30dp"
+                pos_hint: {'center_x': .5, 'center_y': .25}
+                spacing: '5dp'
+
+                MDCheckbox:
+                    id: cb
+                    size_hint: None, None
+                    width: "30dp"
+                    height: "30dp"
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    on_press: 
+                        PasswordLogin.password = False  if PasswordLogin.password == True else True
+                        PasswordLogin.icon_right = "eye" if PasswordLogin.icon_right == "eye-off" else "eye-off"
+
+                MDLabel:
+                    text: "[ref=Show Password]Show Password[/ref]"
+                    markup: True
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    on_ref_press:
+                        cb.active = False if cb.active == True else True
+                        Password.password = False  if Password.password == True else True
+            BoxLayout: 
+                size_hint: .8, None
+                height: "30dp"
+                pos_hint: {'center_x': .5, 'center_y': .1}
+                spacing: '15dp'
+                
+                
+                MDRectangleFlatIconButton:
+                    text: "Login"
+                    icon: "account-check" 
+                    font_size: "22dp"
+                    size_hint_x: 1
+                    md_bg_color: "lightblue"
+                    on_release: app.validate_login()
+                    
+  
+        MDBottomNavigationItem:
+            name: 'screen 3'
+            text: 'Signup'
+            icon: 'account-plus'
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(56)
+                pos_hint: {'center_y': .89}
+                canvas:
+                    Color:
+                        rgba: 0, 0, 0, 1  
+                    Line:
+                        points: self.x, self.y - dp(15), self.x + self.width, self.y - dp(15)
+                Image:
+                    source: "img/logo.png"
+                    size_hint_x: None
+                    width: dp(58)
+
+                MDLabel:
+                    text: "TWA \n Tricyle At Your Service"
+                    color: "#484747"
+                    bold: True
+                    font_size: "28dp"
+                    halign: "center"
+                    valign: "middle"
+                    size_hint_x: None
+                    width: self.texture_size[0]
+                    text_size: None, None
+                    markup: True
+
+            MDLabel:
+                id: error_label  
+                text: ""
+                color: "#FF0000"
+                bold: True
+                font_size: "18dp"
+                halign: "center"
+                pos_hint: {'center_y': .72}
+                
+            MDTextField:
+                mode: "rectangle"
+                id: Username
+                hint_text: "Username"
+                icon_right: "account"
+                helper_text: "Enter username"
+                helper_text_mode: "on_focus"
+                font_size: "20dp"
+                size_hint_x: .85
+                pos_hint: {'center_x': .5, 'center_y': .65}
+                on_text: self.text = self.text.replace(" ", "")
+                write_tab: False
+
+            MDTextField:
+                id: Password
+                mode: "rectangle"
+                hint_text: "Password"
+                password: True
+                icon_right: "eye-off"
+                helper_text: "Enter password"
+                helper_text_mode: "on_focus"
+                font_size: "20dp"
+                size_hint_x: .85
+                pos_hint: {'center_x': .5, 'center_y': .5}
+                on_text: self.text = self.text.replace(" ", "")
+                write_tab: False
+
+            MDTextField:
+                id: CheckPassword
+                mode: "rectangle"
+                hint_text: "Password"
+                password: True
+                icon_right: "eye-off"
+                helper_text: "Enter password"
+                helper_text_mode: "on_focus"
+                font_size: "20dp"
+                size_hint_x: .85
+                pos_hint: {'center_x': .5, 'center_y': .35}
+                on_text: self.text = self.text.replace(" ", "")
+                write_tab: False
+
+            BoxLayout: 
+                size_hint: .85, None
+                height: "30dp"
+                pos_hint: {'center_x': .5, 'center_y': .25}
+                spacing: '5dp'
+
+                MDCheckbox:
+                    id: cb
+                    size_hint: None, None
+                    width: "30dp"
+                    height: "30dp"
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    on_press: 
+                        Password.password = False  if Password.password == True else True
+                        Password.icon_right = "eye" if Password.icon_right == "eye-off" else "eye-off"
+
+                MDLabel:
+                    text: "[ref=Show Password]Show Password[/ref]"
+                    markup: True
+                    pos_hint: {'center_x': .5, 'center_y': .5}
+                    on_ref_press:
+                        cb.active = False if cb.active == True else True
+                        Password.password = False  if Password.password == True else True
+            BoxLayout: 
+                size_hint: .8, None
+                height: "30dp"
+                pos_hint: {'center_x': .5, 'center_y': .1}
+                spacing: '15dp'
+                
+                MDRectangleFlatIconButton:
+                    text: "Create"
+                    icon: "account-edit" 
+                    font_size: "22dp"
+                    size_hint_x: 1
+                    md_bg_color: "lightblue"
+                    on_release: app.validate_signup()
+
+            
+
+        
