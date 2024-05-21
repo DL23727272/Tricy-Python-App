@@ -1,1 +1,1 @@
- self.db = Database()
+go_home

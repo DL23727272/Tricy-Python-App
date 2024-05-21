@@ -98,7 +98,7 @@ MDScreen:
             BoxLayout: 
                 size_hint: .85, None
                 height: "30dp"
-                pos_hint: {'center_x': .5, 'center_y': .25}
+                pos_hint: {'center_x': .5, 'center_y': .35}
                 spacing: '5dp'
 
                 MDCheckbox:
@@ -208,7 +208,7 @@ MDScreen:
                 hint_text: "Password"
                 password: True
                 icon_right: "eye-off"
-                helper_text: "Enter password"
+                helper_text: "Check password"
                 helper_text_mode: "on_focus"
                 font_size: "20dp"
                 size_hint_x: .85
@@ -231,6 +231,8 @@ MDScreen:
                     on_press: 
                         Password.password = False  if Password.password == True else True
                         Password.icon_right = "eye" if Password.icon_right == "eye-off" else "eye-off"
+                        CheckPassword.password = False  if CheckPassword.password == True else True
+                        CheckPassword.icon_right = "eye" if CheckPassword.icon_right == "eye-off" else "eye-off"
 
                 MDLabel:
                     text: "[ref=Show Password]Show Password[/ref]"
@@ -239,6 +241,7 @@ MDScreen:
                     on_ref_press:
                         cb.active = False if cb.active == True else True
                         Password.password = False  if Password.password == True else True
+                        CheckPassword.password = False  if CheckPassword.password == True else True
             BoxLayout: 
                 size_hint: .8, None
                 height: "30dp"
